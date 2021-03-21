@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "845603869124",
+    "project_id": "jourv2",
+    "storage_bucket": "jourv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845603869124:android:4df0609bdceb9c80f51491",
+        "android_client_info": {
+          "package_name": "com.purvajakale.jourv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845603869124-ogc34oqkshj0qhm5g7f1bsejfhgpghho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs4kHveSZH5g93LD0qtDuyEd7VSMOuWIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845603869124-ogc34oqkshj0qhm5g7f1bsejfhgpghho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
