@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_widget.dart';
+import 'views/navigation_view.dart';
 import 'package:jourv2/views/first_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:jourv2/views/sign_up_view.dart';

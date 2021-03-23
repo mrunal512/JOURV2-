@@ -175,7 +175,7 @@ class _EditNotesViewState extends State<EditNotesView> {
           children: <Widget>[
             Expanded(
               child: Text(
-                "Trip Notes",
+                "Quick Notes",
                 style: TextStyle(fontSize: 24, color: Colors.white),
               ),
             ),

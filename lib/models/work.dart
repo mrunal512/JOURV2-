@@ -11,6 +11,7 @@ class details {
   String photoReference;
   String notes;
   String documentId;
+  String budget;
 
   details(
     this.tag,
@@ -40,5 +41,6 @@ class details {
         importance = snapshot.data()['importance'],
         photoReference = snapshot.data()['photoReference'],
         notes = snapshot.data()['notes'],
+        budget = snapshot.data()['budget'],
         documentId = snapshot.id;
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jourv2/views/new_works/schedule_view.dart';
-import 'pages.dart';
-import 'views/home_view.dart';
+import '../pages.dart';
+import 'home_view.dart';
 import 'package:jourv2/models/work.dart';
+import 'profile_view.dart';
 import 'package:jourv2/widget/provider_widget.dart';
 import 'package:jourv2/services/auth_service.dart';
 
@@ -16,7 +17,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     HomeView(),
     SchedulePage(),
-    LogsPage(),
+    ProfileView(),
   ];
 
   @override
@@ -31,33 +32,40 @@ class _HomeState extends State<Home> {
     );
     return Scaffold(
         appBar: AppBar(
-          title: Text('personal diary app'),
+          title: Text('JOUR - a personal diary app'),
           backgroundColor: Colors.blue,
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => NewScheduleLog(
-                            detail: newWork,
-                          )),
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: IconButton(
+                icon: Icon(
+                  Icons.add,
+                  size: 40,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NewScheduleLog(
+                              detail: newWork,
+                            )),
+                  );
+                },
+              ),
             ),
-            IconButton(
-              icon: Icon(Icons.undo),
-              onPressed: () async {
-                try {
-                  AuthService auth = Provider.of(context).auth;
-                  await auth.signOut();
-                  print("Signed Out!");
-                } catch (e) {
-                  print(e);
-                }
-              },
-            )
+
+            // IconButton(
+            //   icon: Icon(Icons.undo),
+            //   onPressed: () async {
+            //     try {
+            //       AuthService auth = Provider.of(context).auth;
+            //       await auth.signOut();
+            //       print("Signed Out!");
+            //     } catch (e) {
+            //       print(e);
+            //     }
+            //   },
+            // )
           ],
         ),
         body: _children[_currentIndex],
@@ -74,8 +82,8 @@ class _HomeState extends State<Home> {
               title: new Text('Schedule'),
             ),
             BottomNavigationBarItem(
-              icon: new Icon(Icons.collections_bookmark),
-              title: new Text('Logs'),
+              icon: new Icon(Icons.account_circle),
+              title: new Text('Profile'),
             ),
           ],
         ));

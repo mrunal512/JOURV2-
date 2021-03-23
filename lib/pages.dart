@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jourv2/views/profile_view.dart';
 
 class HomePage extends StatelessWidget {
   @override
