@@ -30,6 +30,7 @@ dependencies:
   auto_size_text: ^2.1.0
   google_sign_in: ^4.5.9
   flutter_auth_buttons: ^0.5.0
+  curved_navigation_bar: ^0.3.4
 
 dev_dependencies:
   flutter_test:

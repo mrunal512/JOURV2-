@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jourv2/views/new_works/schedule_view.dart';
-import '../pages.dart';
+import 'pages.dart';
 import 'home_view.dart';
 import 'package:jourv2/models/work.dart';
 import 'profile_view.dart';
-import 'package:jourv2/widget/provider_widget.dart';
-import 'package:jourv2/services/auth_service.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,12 +13,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    HomeView(),
-    SchedulePage(),
-    ProfileView(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final newWork = new details(
@@ -30,63 +23,78 @@ class _HomeState extends State<Home> {
       null,
       null,
     );
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('JOUR - a personal diary app'),
-          backgroundColor: Colors.blue,
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.add,
-                  size: 40,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => NewScheduleLog(
-                              detail: newWork,
-                            )),
-                  );
-                },
-              ),
-            ),
 
-            // IconButton(
-            //   icon: Icon(Icons.undo),
-            //   onPressed: () async {
-            //     try {
-            //       AuthService auth = Provider.of(context).auth;
-            //       await auth.signOut();
-            //       print("Signed Out!");
-            //     } catch (e) {
-            //       print(e);
-            //     }
-            //   },
-            // )
-          ],
-        ),
-        body: _children[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: onTabTapped,
-          currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text('Home'),
+    final List<Widget> _children = [
+      HomeView(),
+      ProfileView(),
+      SchedulePage(),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('JOUR'),
+        backgroundColor: Colors.blue,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: IconButton(
+              icon: Icon(
+                Icons.add,
+                size: 40,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NewScheduleLog(
+                            detail: newWork,
+                          )),
+                );
+              },
             ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.event),
-              title: new Text('Schedule'),
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.account_circle),
-              title: new Text('Profile'),
-            ),
-          ],
-        ));
+          ),
+        ],
+      ),
+      body: _children[_currentIndex],
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.white,
+        onTap: onTabTapped,
+        color: Colors.blueAccent,
+        animationCurve: Curves.easeIn,
+        height: 60,
+        // items: [
+        //   BottomNavigationBarItem(
+        //     icon: new Icon(Icons.home),
+        //     title: new Text('Home'),
+        //   ),
+        //   BottomNavigationBarItem(
+        //     icon: new Icon(Icons.account_circle),
+        //     title: new Text('Profile'),
+        //   ),
+        //   BottomNavigationBarItem(
+        //     icon: new Icon(Icons.event),
+        //     title: new Text('Schedule'),
+        //   ),
+        // ],
+        items: [
+          Icon(
+            Icons.home,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.account_circle,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.event,
+            size: 30,
+            color: Colors.white,
+          ),
+        ],
+      ),
+    );
   }
 
   void onTabTapped(int index) {

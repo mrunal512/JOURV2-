@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'views/navigation_view.dart';
 import 'package:jourv2/views/first_view.dart';
@@ -20,6 +21,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "Travel Budget App",
         theme: ThemeData(
+          brightness: Brightness.light,
+          primarySwatch: Colors.blue,
+        ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
           primarySwatch: Colors.blue,
         ),
         home: HomeController(),

@@ -35,8 +35,6 @@ class _NewScheduleDateState extends State<NewScheduleDate> {
   }
 
   Image getImage(photoReference) {
-    // final maxWidth = "1000";
-    // final maxHeight = "200";
     final url = "images/listviewer.png";
     return Image.asset(url, fit: BoxFit.cover);
   }
@@ -204,52 +202,3 @@ class _NewScheduleDateState extends State<NewScheduleDate> {
     );
   }
 }
-//   @override
-//   Widget build(BuildContext context) {
-//     TextEditingController _titleController = new TextEditingController();
-//     _titleController.text = widget.detail.name;
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Create new Schedule - date'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Text("name : ${widget.detail.name}"),
-//             RaisedButton(
-//               child: Text('Select schedule date'),
-//               onPressed: () async {
-//                 await displayRangeDatePicker(context);
-//               },
-//             ),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: [
-//                 Text(
-//                     'start date: ${DateFormat('dd-MM-yyyy').format(_startDate).toString()}'),
-//                 Text(
-//                     'end date: ${DateFormat('dd-MM-yyyy').format(_endDate).toString()}'),
-//               ],
-//             ),
-//             RaisedButton(
-//               child: Text('Continue'),
-//               onPressed: () {
-//                 widget.detail.startDate = _startDate;
-//                 widget.detail.endDate = _endDate;
-//                 Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (context) => NewScheduleImportance(
-//                         detail: widget.detail,
-//                       ),
-//                     ));
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
