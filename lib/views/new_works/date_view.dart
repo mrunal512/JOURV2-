@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jourv2/models/work.dart';
 import 'importance_view.dart';
 import 'package:intl/intl.dart';
-import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -19,17 +18,19 @@ class _NewScheduleDateState extends State<NewScheduleDate> {
   DateTime _endDate = DateTime.now().add(Duration(days: 7));
 
   Future displayRangeDatePicker(BuildContext context) async {
-    final List<DateTime> picked = await DateRangePicker.showDatePicker(
-      context: context,
-      initialFirstDate: _startDate,
-      initialLastDate: _endDate,
-      firstDate: new DateTime(DateTime.now().year),
-      lastDate: new DateTime(DateTime.now().year + 50),
-    );
-    if (picked != null && picked.length == 2) {
+    final DateTimeRange picked = await showDateRangePicker(
+        context: context, firstDate: _startDate, lastDate: _endDate);
+    // final List<DateTime> picked = await DateRangePicker.showDatePicker(
+    //   context: context,
+    //   initialFirstDate: _startDate,
+    //   initialLastDate: _endDate,
+    //   firstDate: new DateTime(DateTime.now().year),
+    //   lastDate: new DateTime(DateTime.now().year + 50),
+    // );
+    if (picked != null && picked.duration >= Duration(days: 1)) {
       setState(() {
-        _startDate = picked[0];
-        _endDate = picked[1];
+        _startDate = picked.start;
+        _endDate = picked.end;
       });
     }
   }

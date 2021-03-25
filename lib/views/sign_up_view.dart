@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jourv2/services/auth_service.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:jourv2/views/navigation_view.dart';
 import 'package:jourv2/widget/provider_widget.dart';
 
 final primaryColor = const Color(0xFF75A2EA);
@@ -56,7 +57,8 @@ class _SignUpViewState extends State<SignUpView> {
         if (authFormType == AuthFormType.signIn) {
           String uid = await auth.signInWithEmailAndPassword(_email, _password);
           print("Signed In with ID $uid");
-          Navigator.of(context).pushReplacementNamed('/home');
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (BuildContext context) => Home()));
         } else if (authFormType == AuthFormType.reset) {
           await auth.sendPasswordResetEmail(_email);
           print("Password reset email sent");
@@ -68,7 +70,9 @@ class _SignUpViewState extends State<SignUpView> {
           String uid = await auth.createUserWithEmailAndPassword(
               _email, _password, _name);
           print("Signed up with New ID $uid");
-          Navigator.of(context).pushReplacementNamed('/home');
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (BuildContext context) => Home()));
+          // Navigator.of(context).pushReplacementNamed('/home');
         }
       } catch (e) {
         print(e);
