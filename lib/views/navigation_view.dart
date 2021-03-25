@@ -28,6 +28,7 @@ class _HomeState extends State<Home> {
       HomeView(),
       ProfileView(),
       SchedulePage(),
+      // SchedulePage(),
     ];
 
     return Scaffold(
@@ -88,7 +89,7 @@ class _HomeState extends State<Home> {
             color: Colors.white,
           ),
           Icon(
-            Icons.event,
+            Icons.camera,
             size: 30,
             color: Colors.white,
           ),

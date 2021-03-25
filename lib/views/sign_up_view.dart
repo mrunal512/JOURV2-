@@ -9,19 +9,20 @@ final primaryColor = const Color(0xFF75A2EA);
 enum AuthFormType { signIn, signUp, reset }
 
 class SignUpView extends StatefulWidget {
-  final AuthFormType authFormType;
+  // final AuthFormType authFormType;
 
-  SignUpView({Key key, @required this.authFormType}) : super(key: key);
+  // SignUpView({Key key, @required this.authFormType}) : super(key: key);
 
   @override
-  _SignUpViewState createState() =>
-      _SignUpViewState(authFormType: this.authFormType);
+  _SignUpViewState createState() => _SignUpViewState();
+  // _SignUpViewState(authFormType: this.authFormType);
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  AuthFormType authFormType;
+  AuthFormType authFormType = AuthFormType.signIn;
 
-  _SignUpViewState({this.authFormType});
+  _SignUpViewState();
+  // _SignUpViewState({this.authFormType});
 
   final formKey = GlobalKey<FormState>();
   String _email, _password, _name, _warning;

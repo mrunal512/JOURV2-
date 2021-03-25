@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return Provider(
       auth: AuthService(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "Travel Budget App",
         theme: ThemeData(
           brightness: Brightness.light,
