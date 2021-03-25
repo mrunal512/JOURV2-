@@ -58,8 +58,8 @@ class _SignUpViewState extends State<SignUpView> {
         if (authFormType == AuthFormType.signIn) {
           String uid = await auth.signInWithEmailAndPassword(_email, _password);
           print("Signed In with ID $uid");
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (BuildContext context) => Home()));
+          // Navigator.pushReplacement(context,
+          //     MaterialPageRoute(builder: (BuildContext context) => Home()));
         } else if (authFormType == AuthFormType.reset) {
           await auth.sendPasswordResetEmail(_email);
           print("Password reset email sent");
@@ -71,8 +71,8 @@ class _SignUpViewState extends State<SignUpView> {
           String uid = await auth.createUserWithEmailAndPassword(
               _email, _password, _name);
           print("Signed up with New ID $uid");
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (BuildContext context) => Home()));
+          // Navigator.pushReplacement(context,
+          //     MaterialPageRoute(builder: (BuildContext context) => Home()));
           // Navigator.of(context).pushReplacementNamed('/home');
         }
       } catch (e) {

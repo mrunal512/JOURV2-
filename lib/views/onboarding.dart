@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jourv2/views/navigation_view.dart';
 import 'package:jourv2/views/sign_up_view.dart';
@@ -10,7 +11,7 @@ class Onboarding extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: onboarding(),
+      home: HomeController(),
     );
   }
 }
@@ -169,10 +170,10 @@ class _onboardingState extends State<onboarding> {
 class HomeController extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final AuthService auth = Provider.of(context).auth;
-    return StreamBuilder<String>(
-      stream: auth.onAuthStateChanged,
-      builder: (context, AsyncSnapshot<String> snapshot) {
+    // final AuthService auth = Provider.of(context).auth;
+    return StreamBuilder<User>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
           final bool signedIn = snapshot.hasData;
           return signedIn ? Home() : SignUpView();

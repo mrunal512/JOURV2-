@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:jourv2/views/secondroute.dart';
 
 class UploadPage extends StatefulWidget {
   @override
@@ -13,24 +14,30 @@ class UploadPage extends StatefulWidget {
 }
 
 class _UploadPageState extends State<UploadPage> {
-  File? sampleImage;
-  String? _myValue;
+  File sampleImage;
+  String _myValue;
   final formKey = GlobalKey<FormState>();
   ImagePicker _picker = ImagePicker();
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   Future getImage() async {
     var tempImage = await _picker.getImage(source: ImageSource.gallery);
-    final File file = File(tempImage!.path);
-
+    final File file = File(tempImage.path);
     setState(() {
       sampleImage = file;
     });
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => SecondRoute(
+                func: enableUpload,
+              )),
+    );
   }
 
   void uploadStatusImage() async {
-    if (formKey.currentState!.validate()) {
-      formKey.currentState!.save();
+    if (formKey.currentState.validate()) {
+      formKey.currentState.save();
 
       var timeKey = DateTime.now();
       String name = timeKey.toString() + ".jpg";
@@ -57,12 +64,12 @@ class _UploadPageState extends State<UploadPage> {
 
     CollectionReference posts = FirebaseFirestore.instance
         .collection('Posts')
-        .doc('${auth.currentUser!.uid}')
+        .doc('${auth.currentUser.uid}')
         .collection("UsersPosts");
     posts
         .add({
           "image": imageURL,
-          "description": _myValue!,
+          "description": _myValue,
           "date": date,
           "time": time,
         })
@@ -72,28 +79,42 @@ class _UploadPageState extends State<UploadPage> {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData media = MediaQuery.of(context);
-
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text("add note"),
-        centerTitle: true,
+    return Center(
+      child: ElevatedButton(
+        child: Text("Add a new post"),
+        style: ElevatedButton.styleFrom(
+          primary: Colors.lightBlue,
+          onPrimary: Colors.white,
+          onSurface: Colors.grey,
+        ),
+        onPressed: getImage,
       ),
-      body: sampleImage == null
-          ? Center(child: Text("Select an Image"))
-          : SingleChildScrollView(
-              reverse: true,
-              padding: EdgeInsets.only(bottom: media.viewInsets.bottom),
-              child: enableUpload()),
-      floatingActionButton: sampleImage == null
-          ? new FloatingActionButton(
-              onPressed: getImage,
-              tooltip: 'Add Image',
-              child: new Icon(Icons.add_a_photo),
-            )
-          : null,
     );
+    // Scaffold(
+    //     resizeToAvoidBottomInset: false,
+    //     appBar: AppBar(
+    //       title: Text("add note"),
+    //       centerTitle: true,
+    //     ),
+    //     body:
+    //         // sampleImage == null
+    //         // ?
+    //         Center(child: Text("Select an Image"))
+    //     // : SingleChildScrollView(
+    //     //     reverse: true,
+    //     //     padding: EdgeInsets.only(bottom: media.viewInsets.bottom),
+    //     //     child: enableUpload())
+    //     ,
+    //     floatingActionButton:
+    //         //  sampleImage == null
+    //         // ?
+    //         new FloatingActionButton(
+    //       onPressed: getImage,
+    //       tooltip: 'Add Image',
+    //       child: new Icon(Icons.add_a_photo),
+    //     )
+    //     // : null,
+    //     );
   }
 
   Widget enableUpload() {
@@ -113,13 +134,13 @@ class _UploadPageState extends State<UploadPage> {
               decoration: new InputDecoration(labelText: 'Description'),
               minLines: 2,
               maxLines: 25,
-              validator: (String? value) {
-                if (value!.isEmpty) {
+              validator: (String value) {
+                if (value.isEmpty) {
                   return 'Blog Description is required';
                 }
               },
-              onSaved: (String? value) {
-                _myValue = value!;
+              onSaved: (String value) {
+                _myValue = value;
               },
             ),
             SizedBox(

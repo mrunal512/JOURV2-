@@ -28,9 +28,9 @@ class HomeView extends StatelessWidget {
           builder: (context, snapshot) {
             if (!snapshot.hasData) return Loading();
             return new ListView.builder(
-                itemCount: snapshot.data.documents.length,
+                itemCount: snapshot.data.docs.length,
                 itemBuilder: (BuildContext context, int index) =>
-                    buildWorkCard(context, snapshot.data.documents[index]));
+                    buildWorkCard(context, snapshot.data.docs[index]));
           }),
     );
   }

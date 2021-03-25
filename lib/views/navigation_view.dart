@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jourv2/views/new_works/schedule_view.dart';
+import 'package:jourv2/views/posts.dart';
+import 'package:jourv2/views/secondroute.dart';
 import 'pages.dart';
 import 'home_view.dart';
 import 'package:jourv2/models/work.dart';
@@ -27,7 +29,8 @@ class _HomeState extends State<Home> {
     final List<Widget> _children = [
       HomeView(),
       ProfileView(),
-      SchedulePage(),
+      UploadPage(),
+      HomePage()
       // SchedulePage(),
     ];
 
@@ -90,6 +93,11 @@ class _HomeState extends State<Home> {
           ),
           Icon(
             Icons.camera,
+            size: 30,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.post_add,
             size: 30,
             color: Colors.white,
           ),
