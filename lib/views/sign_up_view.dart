@@ -57,6 +57,7 @@ class _SignUpViewState extends State<SignUpView> {
         final auth = Provider.of(context).auth;
         if (authFormType == AuthFormType.signIn) {
           String uid = await auth.signInWithEmailAndPassword(_email, _password);
+          Navigator.pop(context);
           print("Signed In with ID $uid");
           // Navigator.pushReplacement(context,
           //     MaterialPageRoute(builder: (BuildContext context) => Home()));
@@ -70,6 +71,7 @@ class _SignUpViewState extends State<SignUpView> {
         } else {
           String uid = await auth.createUserWithEmailAndPassword(
               _email, _password, _name);
+          Navigator.pop(context);
           print("Signed up with New ID $uid");
           // Navigator.pushReplacement(context,
           //     MaterialPageRoute(builder: (BuildContext context) => Home()));

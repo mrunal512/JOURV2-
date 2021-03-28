@@ -175,8 +175,14 @@ class HomeController extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
-          final bool signedIn = snapshot.hasData;
-          return signedIn ? Home() : SignUpView();
+          User user = snapshot.data;
+          if (user == null) {
+            return onboarding();
+            // return Home();
+          } else {
+            return Home();
+          }
+          // return user ? Home() : SignUpView();
         }
         return CircularProgressIndicator();
       },

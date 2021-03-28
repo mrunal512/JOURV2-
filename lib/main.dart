@@ -94,6 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void openOnBoard() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => Onboarding()));
+        context, MaterialPageRoute(builder: (context) => HomeController()));
   }
 }

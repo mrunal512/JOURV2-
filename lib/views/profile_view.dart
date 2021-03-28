@@ -62,8 +62,8 @@ class ProfileView extends StatelessWidget {
       child: Text("Sign Out"),
       onPressed: () async {
         try {
-          Navigator.pop(context);
-          // await Provider.of(context).auth.signOut();
+          // Navigator.pop(context);
+          await Provider.of(context).auth.signOut();
         } catch (e) {
           print(e);
         }
