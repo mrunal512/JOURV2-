@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
@@ -19,7 +20,19 @@ Icon buildChild(tag) {
   }
 }
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  PageController pageController = new PageController();
+  int currentIndex = 0;
+  FirebaseMessaging _firebaseMessaging;
+  String message;
+
+  @override void initState() { super.initState(); Future.delayed(Duration(seconds: 1), () { _firebaseMessaging.onMessage( FirebaseMessaging.onMessageOpenedApp: (Map<String, dynamic> message) async { setState(() { _message = message['title']; }); }, FirebaseMessaging.onMessageOpenedApp: (Map<String, dynamic> message) async { setState(() { _message = message['title']; }); }, FirebaseMessaging.onMessageOpenedApp: (Map<String, dynamic> message) async { setState(() { _message = message['title']; }); }); _firebaseMessaging.getToken().then((value) { print(value); }); }); }
+
   @override
   Widget build(BuildContext context) {
     return Container(
